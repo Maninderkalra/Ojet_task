@@ -1,0 +1,19 @@
+<div id="divFilter" class="oj-hybrid-padding">
+<h5 class="center mt-0">Filter</h5>
+  <div>
+    <h6 class="pt-2">SalesProfileStatus</h6>
+    <oj-checkboxset id="chkFilter" value="{{selectVal}}" options="{{dataProviderFilterPopup}}">
+    </oj-checkboxset>
+  </div>
+  <!-- <div class="oj-sm-margin-3x-vertical">
+    <oj-label-value>
+      <oj-label slot="label">Current component value is</oj-label>
+      <span slot="value">
+        <oj-bind-text value="[[selectVal]]"></oj-bind-text>
+      </span>
+    </oj-label-value>
+  </div> -->
+<div>
+  <oj-button id="btnApplyFilter" class="oj-button-sm float-right mb-2" on-oj-action="[[applyFilter]]">Apply Filter</oj-button>
+</div>
+</div>

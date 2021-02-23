@@ -1,0 +1,23 @@
+<div class="oj-hybrid-applayout-page">
+    <div class="oj-applayout-fixed-top">
+      <div class="oj-flex header">
+        <div class="oj-md-12 oj-sm-12 oj-lg-12" id="divBasicModule">
+          <oj-module id="moduleBasic" config="[[headerConfig]]"></oj-module>
+        </div>
+      </div>
+    </div>
+    <!-- This is where your main page content will be loaded -->
+    <div class="oj-applayout-content">
+      <div role="main" class="oj-hybrid-applayout-content">
+        <div class="oj-hybrid-padding">
+            <accountlist-detail 
+            party-Number="[[itemDetail.partyNumber]]"
+            organization-Name="[[itemDetail.orgName]]" 
+            sales-Status="[[itemDetail.salesStatus]]"
+            org-Status="[[itemDetail.orgStatus]]"
+            >
+            </accountlist-detail>
+        </div>
+        </div>
+    </div>
+</div>

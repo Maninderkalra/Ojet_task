@@ -1,0 +1,95 @@
+<!--
+ Copyright (c) 2014, 2021, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-applayout-page">
+  <div class="oj-applayout-fixed-top">
+      <!--
+       ** Oracle JET V10.0.0 hybrid mobile application header pattern.
+       ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
+       ** more information on how to use this pattern.
+    -->
+    <div class="oj-flex header">
+      <div class="oj-md-12 oj-sm-12 oj-lg-12" id="divBasicModule">
+        <oj-module id="moduleContact" config="[[headerConfig]]"></oj-module>
+      </div>
+      <div id="divTrainModule" class="oj-md-12 oj-sm-12 oj-lg-12 pt-2 pl-1 pb-2">
+        <p>Step 3/4</p>
+        <progress id="basicStep" value="75" max="100"> </progress>
+        <!-- <oj-train id="train" class="demo-default-train" selected-step="{{selectedStep}}" steps="[[steps]]">
+        </oj-train> -->
+      </div>
+    </div>
+  </div>
+  <!-- This is where your main page content will be loaded -->
+  <div class="oj-applayout-content">
+    <div role="main" class="oj-hybrid-applayout-content">
+      <div class="oj-hybrid-padding">
+        <h6>Primary Contact</h6>
+        <div>
+          <oj-validation-group id="validationGroup">
+            <oj-form-layout id="subProductForm" direction="row" max-columns="1">                
+              <oj-label for="selType">Type</oj-label>
+              <oj-select-single id="selType" data="[[dataContactTypeProvider]]" value="{{formDetail.selectContactType}}" placeholder="Select Type">
+              </oj-select-single>
+
+              <oj-label for="selType">Prefix</oj-label>
+              <oj-select-single id="selPrefix" data="[[dataPrefixProvider]]" value="{{formDetail.selectPrefix}}" placeholder="Prefix">
+              </oj-select-single>
+              
+              <oj-label for="txtFName">First Name</oj-label>
+              <oj-input-text id="txtFName" value="{{formDetail.firstName}}" required="true" placeholder="First Name"></oj-input-text>
+
+              <oj-label for="txtLName">Last Name</oj-label>
+              <oj-input-text id="txtLName" value="{{formDetail.lastName}}" required="true" placeholder="Last Name"></oj-input-text>
+
+              <oj-label for="selRole">Role</oj-label>
+              <oj-select-single id="selRole" data="[[dataContactRoleProvider]]" value="{{formDetail.selectContactRole}}" placeholder="Select Contact Role">
+              </oj-select-single>
+              
+              <div class="col-md-12 col-sm-12 col-lg-12 oj-flex-item">
+                <oj-label for="selTelephone">Telephone</oj-label>
+              </div>
+              <div class="oj-flex">
+                  <div class="col-md-3 col-sm-3 col-lg-3 oj-flex-item oj-sm-padding-2x-horizontal p-inline-start-0">
+                    <oj-select-single id="selTelephone" data="[[dataTelephoneProvider]]" value="{{formDetail.selectTelephone}}" placeholder="Telephone">
+                    </oj-select-single>
+                  </div>
+                  <div class="col-md-9 col-sm-9 col-lg-9 oj-flex-item">
+                    <oj-input-text id="txtTelephone" value="{{formDetail.telephone}}" required="true" placeholder="Telephone"></oj-input-text>
+                  </div>
+                </div>
+
+                <oj-label for="txtEmail">Email</oj-label>
+                <oj-input-text id="txtEmail" value="{{formDetail.email}}" validators="[[emailValidate]]" placeholder="Email"></oj-input-text>
+
+                <h6>Preferred Method of contact</h6>
+                <oj-radioset id="severityCheckboxButtonSet" value="{{formDetail.radioContact}}"
+                           labelled-by="state" aria-controls="myform">
+                  <oj-option id="email" value="email">e-mail</oj-option>
+                  <oj-option id="telephone" value="telephone">Telephone</oj-option>
+                </oj-radioset>
+
+                <div class="oj-flex">
+                  <div class="col-md-9 col-sm-9 col-lg-9 oj-flex-item oj-sm-padding-2x-horizontal p-inline-start-0">
+                    <h6>Current Status</h6>
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-lg-3 oj-flex-item pt-1">
+                    <oj-switch class="float-right" value="{{formDetail.status}}"></oj-switch>
+                  </div>
+                </div>
+
+            </oj-form-layout>
+          </oj-validation-group>
+
+          <div class="float-right">
+            <oj-button id="btnBack" class="oj-button-lg" on-oj-action="[[goBack]]">Back</oj-button>
+            <oj-button id="btnSubmit" class="oj-button-lg" on-oj-action="[[formSubmit]]">Next</oj-button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

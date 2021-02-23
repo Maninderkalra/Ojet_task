@@ -1,0 +1,30 @@
+<!--
+ Copyright (c) 2014, 2021, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <div class="oj-flex pb-2">
+  
+  <div class="oj-md-4 oj-sm-4 oj-lg-4">
+    <oj-bind-if test="pageTitle != 'Accounts' ">
+      <div class="oj-flex-bar-start">
+        <!-- <oj-button id="drawerToggleButton" on-oj-action="[[toggleDrawer]]" chroming="borderless" display="icons">
+        <span slot="startIcon" class="oj-ux-ico-menu-overflow"></span>
+        <span>Navigation Drawer</span>
+        </oj-button> -->
+        <oj-button id="btnBack" display="icons" chroming="borderless" on-oj-action="[[goBack]]">
+          <span slot="startIcon" class="oj-hybrid-applayout-header-icon-back oj-fwk-icon"></span>
+          <span>Back</span>
+        </oj-button>
+      </div>
+    </oj-bind-if>
+  </div>
+  <div class="oj-md-8 oj-sm-8 oj-lg-8">
+  <div role="heading" class="oj-hybrid-applayout-bar-title">
+    <h1 class="oj-hybrid-applayout-header-title"><oj-bind-text value="[[pageTitle]]"></oj-bind-text></h1>
+  </div>
+  </div>
+</div>
+<!--<div class="oj-flex-bar-end">
+    Add additional buttons here
+</div>-->

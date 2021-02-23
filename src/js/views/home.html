@@ -1,0 +1,91 @@
+<div class="oj-hybrid-applayout-page">
+
+    <div class="oj-applayout-fixed-top">
+        <!--
+         ** Oracle JET V10.0.0 hybrid mobile application header pattern.
+         ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
+         ** more information on how to use this pattern.
+      -->
+      <!-- <header role="banner" class="oj-hybrid-applayout-header"> -->
+        <div class="oj-flex header">
+          <div class="oj-md-12 oj-sm-12 oj-lg-12">
+            <oj-module id="headerHome" config="[[headerConfig]]"></oj-module>
+          </div>
+          <!-- <div class="oj-md-2 oj-sm-2 oj-lg-2">
+           
+          </div> -->
+        </div>  
+      <!-- </header> -->
+    </div>
+    <!-- This is where your main page content will be loaded -->
+    <div class="oj-applayout-content">
+      <div role="main" class="oj-hybrid-applayout-content">
+        <div class="oj-hybrid-padding">
+
+          <div id="divSearch" class="pt-2">
+            <oj-input-search id="txtSearch" placeholder="Search" 
+            raw-value="{{searchValue}}" on-raw-value-changed="[[handleValueChanged]]">
+            </oj-input-search>
+          </div>
+
+          <div id="divFilter" class="oj-flex header">
+            <div class="oj-md-10 oj-sm-10 oj-lg-10">
+              <h5><oj-bind-text value="[[filterText]]"></oj-bind-text>
+                <oj-bind-text value="[[selectVal]]"></oj-bind-text><span> accounts</span></h5>
+            </div>
+            <div class="oj-md-2 oj-sm-2 oj-lg-2 div-filter">
+             <oj-button id="btnFilter" class="oj-button-sm" display="icons" on-oj-action="[[openFilter]]"> 
+              <span slot="startIcon" class="oj-ux-ico-filter"></span>
+                <div data-bind="visible: selectVal().length > 0" class="oj-badge oj-badge-sm"></div>
+            </oj-button>
+            </div>
+          </div>  
+                    
+          <div id="divList">
+            <oj-list-view id="listview" aria-label="multicolumn with list item to show selection features" data="[[dataProvider]]" 
+            class="oj-sm-padding-2x-vertical home-list" gridlines.item="visible">
+              <template slot="itemTemplate" data-oj-as="item">
+                <li>
+                  <div>
+                    <oj-list-item-layout>
+                      <div slot="leading" class="oj-typography-body-md oj-text-color-primary">
+                        <oj-bind-text value="[[item.data.OrganizationName]]"></oj-bind-text>
+                      </div>
+                      <div slot="metadata" class="oj-typography-body-md">
+                        <oj-bind-text value="[[item.data.SalesProfileStatus]]"></oj-bind-text>
+                      </div>
+                      <div slot="metadata" class="oj-typography-body-md oj-text-color-secondary">
+                        <oj-bind-text value="[[item.data.PartyNumber]]"></oj-bind-text>
+                      </div>
+                      <div slot="action" class="oj-typography-body-md">
+                        <oj-button id="btnNavigate" class="oj-button-sm btn-rotate-180" display="icons" on-oj-action="[[function(){accountDetail(item.data.SyncLocalId,item.data.PartyNumber,item.data.OrganizationName,item.data.SalesProfileStatus,item.data.OrganizationDEO_Status_c,item.data.NextVisit,item.data.LastVisit)}]]"> 
+                          <span slot="startIcon" class="oj-hybrid-applayout-header-icon-back oj-fwk-icon"></span>
+                        </oj-button>
+                      </div>
+                    </oj-list-item-layout>
+                  </div>
+                </li>
+                </template>
+            </oj-list-view>
+          </div>
+
+          <div role="popup" class="">
+            <oj-popup id="filterPopup" class="demo-popup"
+              tail="none" position.my.horizontal="center" position.my.vertical="bottom"
+              position.at.horizontal="center" position.at.vertical="bottom"
+              position.of="window" position.offset.y="-10"
+              modality="modal" on-oj-animate-start="[[startAnimationListener]]">
+              <oj-module id="filterModule" config="[[filterConfig]]"></oj-module>
+            </oj-popup>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <oj-button chroming="outlined" id="btnNewAccount" on-oj-action="[[accountAction]]">
+        <span slot="startIcon" class="oj-ux-ico-plus"></span>Add New
+      </oj-button>
+    </div>
+  </div>

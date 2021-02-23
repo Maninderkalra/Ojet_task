@@ -1,0 +1,39 @@
+<h5>Detail</h5>
+<div class="oj-flex">
+  <oj-bind-if test="[[$properties.organizationName != null]]">
+    <div class="oj-flex-item pb-1">
+      <span class=" oj-typography-subheading-sm oj-typography-semi-bold">Party Number : </span>
+      <oj-bind-text value="[[$properties.partyNumber]]"></oj-bind-text>
+    </div>
+  </oj-bind-if>
+  <oj-bind-if test="[[$properties.organizationName != null]]">
+    <div class="oj-flex-item pb-1">
+      <span class=" oj-typography-subheading-sm oj-typography-semi-bold">Organization Name : </span>
+      <oj-bind-text value="[[$properties.organizationName]]"></oj-bind-text>
+    </div>
+  </oj-bind-if>
+  <oj-bind-if test="[[$properties.salesStatus != null]]">
+    <div class="oj-flex-item pb-1">
+      <span class=" oj-typography-subheading-sm oj-typography-semi-bold">Sales Profile Status : </span>
+      <oj-bind-text value="[[$properties.salesStatus]]"></oj-bind-text>
+    </div>
+  </oj-bind-if>
+  <oj-bind-if test="[[$properties.orgStatus != null]]">
+    <div class="oj-flex-item pb-1">
+      <span class=" oj-typography-subheading-sm oj-typography-semi-bold">OrganizationDEO Status : </span>
+      <oj-bind-text value="[[$properties.orgStatus]]"></oj-bind-text>
+    </div>
+  </oj-bind-if>
+  <oj-bind-if test="[[$properties.nVisit != null]]">
+    <div class="oj-flex-item pb-1">
+      <span class=" oj-typography-subheading-sm oj-typography-semi-bold">Next Visit : </span>
+      <oj-bind-text value="[[$properties.nVisit]]"></oj-bind-text>
+    </div>
+  </oj-bind-if>
+  <oj-bind-if test="[[$properties.lVisit != null]]">
+    <div class="oj-flex-item pb-1">
+      <span class=" oj-typography-subheading-sm oj-typography-semi-bold">Last Visit : </span>
+      <oj-bind-text value="[[$properties.lVisit]]"></oj-bind-text>
+    </div>
+  </oj-bind-if>
+</div>

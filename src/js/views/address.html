@@ -1,0 +1,113 @@
+<!--
+ Copyright (c) 2014, 2021, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+ <div class="oj-hybrid-applayout-page">
+  <div class="oj-applayout-fixed-top">
+      <!--
+       ** Oracle JET V10.0.0 hybrid mobile application header pattern.
+       ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
+       ** more information on how to use this pattern.
+    -->
+    <div class="oj-flex header">
+      <div class="oj-md-12 oj-sm-12 oj-lg-12" id="divBasicModule">
+        <oj-module id="moduleBasic" config="[[headerConfig]]"></oj-module>
+      </div>
+      <div id="divTrainModule" class="oj-md-12 oj-sm-12 oj-lg-12 pt-2 pl-1 pb-2">
+        <p>Step 2/4</p>
+        <progress id="basicStep" value="50" max="100"> </progress>
+        <!-- <oj-train id="train" class="demo-default-train" selected-step="{{selectedStep}}" steps="[[steps]]">
+        </oj-train> -->
+      </div>
+    </div>
+  </div>
+  <!-- This is where your main page content will be loaded -->
+  <div class="oj-applayout-content">
+    <div role="main" class="oj-hybrid-applayout-content">
+      <div class="oj-hybrid-padding">
+        <h6>Primary Address</h6>
+          <div>
+            <oj-validation-group id="validationGroup">
+              <oj-form-layout id="addressForm" direction="row" max-columns="1">
+                  <oj-label for="txtAssline1">Address Line1</oj-label>
+                  <oj-input-text id="txtAssline1" value="{{formDetail.addressLine1}}" placeholder="Address Line1"></oj-input-text>
+
+                  <oj-label for="txtAssline2">Address Line2</oj-label>
+                  <oj-input-text id="txtAssline2" value="{{formDetail.addressLine2}}" placeholder="Address Line2"></oj-input-text>
+                  
+                  <oj-label for="selCountry">Country</oj-label>
+                  <oj-select-single id="selCountry" data="[[dataProviderForCountry]]" value="{{formDetail.selectCountry}}" 
+                    placeholder="Select Country" on-value-changed="{{countryValueChange}}">
+                  </oj-select-single>
+    
+                  <oj-label for="selState">State</oj-label>
+                  <oj-select-single id="selState" data="[[dataProviderForState]]" value="{{formDetail.selectState}}" 
+                  placeholder="Select State" on-value-changed="{{stateValueChange}}">
+                  </oj-select-single>
+                      
+                  <div class="oj-flex">
+                    <div class="col-sm-8 col-md-8 col-lg-8 oj-flex-item oj-sm-padding-2x-horizontal p-inline-start-0">
+                      <oj-label for="selCity" class="required-field">City</oj-label>
+                      <oj-select-single id="selCity" value="{{formDetail.selectCity}}"  data="[[dataProviderForCity]]"
+                      placeholder="Select City" required>
+                      </oj-select-single>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 oj-flex-item w-sm-0">
+                      <oj-label for="txtPincode" class="required-field">Portal Code</oj-label>
+                      <oj-input-number id="txtPincode" value="{{formDetail.pinCode}}" placeholder="000000"
+                      validators='[[pinCodeValidate]]' length.max="6"></oj-input-number>
+                    </div>
+                  </div>
+                  
+                  
+                  <h6><span>GPS cordinates</span></h6>
+                  <div class="col-sm-12 col-md-12 col-lg-12 oj-flex-item">
+                    <oj-label for="gpsLat">Lattitude</oj-label>
+                  </div>
+                  <div class="oj-flex">
+                    <div class="col-sm-8 col-md-8 col-lg-8 oj-flex-item oj-sm-padding-2x-horizontal p-inline-start-0">
+                      <oj-input-text id="gpsLat" value="{{formDetail.lattitude}}" placeholder="Lattitude"></oj-input-text>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 oj-flex-item">
+                      <oj-select-single data="[[dataProviderForLatDir]]" value="{{formDetail.lattitudeDir}}" placeholder="">
+                      </oj-select-single>
+                    </div>
+                  </div>
+
+
+                  <div class="col-sm-12 col-md-12 col-lg-12 oj-flex-item">
+                    <oj-label for="gpsLong">Longitude</oj-label>
+                  </div>
+                  <div class="oj-flex">
+                    <div class="col-sm-8 col-md-8 col-lg-8 oj-flex-item oj-sm-padding-2x-horizontal p-inline-start-0">
+                      <oj-input-text id="gpsLong" value="{{formDetail.longitude}}" placeholder="Longitude"></oj-input-text>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 oj-flex-item">
+                      <oj-select-single data="[[dataProviderForLongDir]]" value="{{formDetail.longitudeDir}}" placeholder="">
+                      </oj-select-single>
+                    </div>
+                  </div>
+
+                  
+                  <h6>Address Type</h6>
+                  <oj-radioset id="severityCheckboxButtonSet" value="{{radioAddress}}"
+                               labelled-by="state" aria-controls="myform" 
+                               placeholder="State">
+                    <oj-option id="genral" value="genral">Genral</oj-option>
+                    <oj-option id="bill" value="bill">Bill to</oj-option>
+                    <oj-option id="ship" value="ship">Ship to</oj-option>
+                  </oj-radioset>
+              </oj-form-layout>
+          </oj-validation-group>
+          
+          <div class="float-right">
+            <oj-button id="btnBack" class="oj-button-lg" on-oj-action="[[goBack]]">Back</oj-button>
+            <oj-button id="btnSubmit" class="oj-button-lg" on-oj-action="[[formSubmit]]">Next</oj-button>
+          </div>
+
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

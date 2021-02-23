@@ -1,0 +1,53 @@
+{
+  "name": "accountlist-detail",
+  "version": "1.0.0",
+  "jetVersion": "^10.0.0",
+  "displayName": "A user friendly, translatable name of the component.",
+  "description": "A translatable high-level description for the component.",
+  "properties": {
+    "id": {
+      "description": "Account sync Id ",
+      "displayName": "ID",
+      "type": "string"
+    },
+    "partyNumber": {
+      "description": "Account party number ",
+      "displayName": "Party Number",
+      "type": "string"
+    },
+    "organizationName": {
+      "description": "Account organizationName",
+      "displayName": "Organization Name",
+      "type": "string"
+    },
+    "salesStatus": {
+      "description": "Account Sales Status",
+      "displayName": "Sales Status",
+      "type": "string"
+    },    
+    "orgStatus": {
+      "description": "Account Organization Status",
+      "displayName": "Org Status",
+      "type": "string"
+    },
+    "nextVisit": {
+      "description": "Account Next Visit",
+      "displayName": "Next Visit",
+      "type": "string"
+    },
+    "lastVisit": {
+      "description": "Account Last Visit",
+      "displayName": "Last Visit",
+      "type": "string"
+    }
+  },
+  "methods": {
+
+  }, 
+  "events": {
+
+  }, 
+  "slots": {
+
+  }
+}

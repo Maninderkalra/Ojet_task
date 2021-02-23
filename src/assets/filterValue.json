@@ -1,0 +1,5 @@
+[ 
+    { "value": "INACTIVE", "label": "INACTIVE" },
+    { "value": "ACTIVE", "label": "ACTIVE" },
+    { "value": "CANDIDATE", "label": "CANDIDATE" }
+]

@@ -1,0 +1,58 @@
+<!--
+ Copyright (c) 2014, 2021, Oracle and/or its affiliates.
+ Licensed under The Universal Permissive License (UPL), Version 1.0
+ as shown at https://oss.oracle.com/licenses/upl/
+ -->
+<div class="oj-hybrid-applayout-page">
+  <div class="oj-applayout-fixed-top">
+      <!--
+       ** Oracle JET V10.0.0 hybrid mobile application header pattern.
+       ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
+       ** more information on how to use this pattern.
+    -->
+    <div class="oj-flex header">
+      <div class="oj-md-12 oj-sm-12 oj-lg-12" id="divBasicModule">
+        <oj-module id="moduleAdditional" config="[[headerConfig]]"></oj-module>
+      </div>
+      <div id="divTrainModule" class="oj-md-12 oj-sm-12 oj-lg-12 pt-2 pl-1 pb-2">
+        <p>Step 4/4</p>
+        <progress id="basicStep" value="100" max="100"> </progress>
+        <!-- <oj-train id="train" class="demo-default-train" selected-step="{{selectedStep}}" steps="[[steps]]">
+        </oj-train> -->
+      </div>
+    </div>
+  </div>
+  <!-- This is where your main page content will be loaded -->
+  <div class="oj-applayout-content">
+    <div role="main" class="oj-hybrid-applayout-content">
+      <div class="oj-hybrid-padding">
+        <h1>Primary Address</h1>
+          <div>
+            <oj-validation-group id="validationGroup">
+              <oj-form-layout id="addressForm" direction="row" max-columns="1">
+                <oj-label for="selSegment">Trade segment</oj-label>
+                  <oj-select-single id="selSegment" data="[[dataSegmentTypeProvider]]" value="{{formDetail.selectSegmentType}}" label-hint="Select Type Segment">
+                  </oj-select-single>
+                  
+                  <oj-label for="txtBName">Brand Name</oj-label>
+                  <oj-input-text id="txtBName" value="{{formDetail.bName}}" label-hint="Brand Name"></oj-input-text>
+                  
+                  <oj-label for="selPSegment">Primary consumer segment</oj-label>
+                  <oj-select-single id="selPSegment" data="[[dataPSegmentProvider]]" value="{{formDetail.selectPSegmentType}}" label-hint="Primary Contact Segment">
+                  </oj-select-single>
+                      
+                  <oj-label for="selSSegment">Secondary consumer segment</oj-label>
+                  <oj-select-single id="selSSegment" data="[[dataSSegmentProvider]]" value="{{formDetail.selectSSegmentType}}" label-hint="Secondary Contact Segment">
+                  </oj-select-single>
+                  
+              </oj-form-layout>
+          </oj-validation-group>
+          <div class="float-right pt-2">
+            <oj-button id="btnBack" class="oj-button-lg" on-oj-action="[[goBack]]">Back</oj-button>
+            <oj-button id="btnSubmit" class="oj-button-lg" on-oj-action="[[formSubmit]]">Save</oj-button>
+          </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
