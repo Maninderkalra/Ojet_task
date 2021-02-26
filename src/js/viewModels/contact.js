@@ -15,7 +15,18 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', '
     function CustomerViewModel() {
       var self = this;
 
-      self.formDetail=ko.observable();
+      self.formDetail={
+          selectContactType:'',
+          selectPrefix:'',
+          selectContactRole:'',
+          selectTelephone:'',
+          telephone:'',
+          firstName:'',
+          lastName:'',
+          email:'',
+          status:true,
+          radioContact:''
+        }
       self.dataContactTypeProvider = ko.observable();
       self.dataPrefixProvider = ko.observable();
       self.dataContactRoleProvider = ko.observable();
@@ -29,8 +40,11 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', '
       moduleUtils.createView({'viewPath':'views/header.html'}).then(function(view) {
         self.headerConfig({'view':view, 'viewModel': app.getHeaderModel()});
         resolve();
-      })
+      });
 
+      var tempData=localStorage.getItem("formDetail");
+      var formDetailData=JSON.parse(tempData);
+      console.log('test: '+ JSON.stringify(formDetailData));
       // Below are a set of the ViewModel methods invoked by the oj-module component.
       // Please reference the oj-module jsDoc for additional information.
 
@@ -45,18 +59,7 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', '
       self.connected = function() {
         accUtils.announce('Customers page loaded.', 'assertive');
         document.title = "Customers";
-        var tempData=localStorage.getItem('formDetail');
-        let data=JSON.parse(tempData);
-        data.selectContactType='';
-        data.selectPrefix='';
-        data.selectContactRole='';
-        data.selectTelephone='';
-        data.telephone='';
-        data.firstName='';
-        data.lastName='';
-        data.email='';
-        data.status=true;
-        self.radioContact=data;
+        //self.formDetail(data);
 
         self.dataContactTypeProvider = new ArrayDataProvider(contactType, {keyAttributes: "value"});
         self.dataPrefixProvider = new ArrayDataProvider(prefixType, {keyAttributes: "value"});
@@ -87,10 +90,27 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', '
         // Implement if needed
       };
 
-      self.formSubmit=()=>
+      self.formSubmit=function()
       {
-        localStorage.setItem("formDetail",JSON.stringify(self.formDetail));
+        formDetailData=$.extend({},JSON.parse(localStorage.getItem("formDetail")), self.formDetail);
+        localStorage.setItem("formDetail",JSON.stringify(formDetailData));
         app.router.go({path:"additionalInfo"});
+      }
+
+      self.getContacts=function()
+      {
+        navigator.contacts.pickContact(function(contact){
+          alert('The following contact has been selected:' + JSON.stringify(contact));
+          document.getElementById("selType").value = contact.phoneNumbers[0].type;
+          document.getElementById("txtFName").value = contact.name.givenName;
+          document.getElementById("txtLName").value = contact.name.familyName;
+          document.getElementById("txtTelephone").value = contact.phoneNumbers[0].value;
+          document.getElementById("txtEmail").value = contact.emails[0].value ;
+          alert('The following contact has been selected:' + JSON.stringify(self.formDetail));
+        },
+        function(err){
+          console.log('Error: ' + err);
+        });
       }
     }
 

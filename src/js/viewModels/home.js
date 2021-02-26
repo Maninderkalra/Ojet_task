@@ -68,6 +68,7 @@ define(['accUtils','knockout','appController','ojs/ojarraydataprovider','../mode
             {
                 //for bind the list view
                 //console.log(navigator.connection.type);
+                localStorage.clear();
                 self.data=ko.observable(null);
                 self.dataProvider=ko.observable();
                 // console.log(self.dataProvider());

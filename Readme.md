@@ -1,0 +1,1 @@
+ojet add plugin cordova-plugin-contacts

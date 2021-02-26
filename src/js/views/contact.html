@@ -26,10 +26,23 @@
   <div class="oj-applayout-content">
     <div role="main" class="oj-hybrid-applayout-content">
       <div class="oj-hybrid-padding">
-        <h6>Primary Contact</h6>
+        
+        <div class="oj-flex">
+          <div class="oj-sm-6 oj-md-6 oj-lg-6 oj-flex-item oj-sm-padding-2x-horizontal">
+            <h6>Primary Contact</h6>
+          </div>
+          <div class="oj-sm-6 oj-md-6 oj-lg-6 oj-flex-item oj-sm-padding-2x-horizontal">
+            <oj-button on-oj-action="[[getContacts]]" chroming="borderless"> 
+              <span  class="oj-primary-color oj-typography-body-4">Select from existing
+                <span class="oj-ux-ico-contacts"></span>
+              </span>
+            </oj-button>
+          </div>
+        </div>
+        
         <div>
           <oj-validation-group id="validationGroup">
-            <oj-form-layout id="subProductForm" direction="row" max-columns="1">                
+            <oj-form-layout id="subProductForm" name="subProductForm" direction="row" max-columns="1">                
               <oj-label for="selType">Type</oj-label>
               <oj-select-single id="selType" data="[[dataContactTypeProvider]]" value="{{formDetail.selectContactType}}" placeholder="Select Type">
               </oj-select-single>

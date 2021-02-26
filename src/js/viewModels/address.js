@@ -14,7 +14,21 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', '
 
     function AddressViewModel() {
       var self = this;
-      self.formDetail={};
+      var localStorageData=null;
+      
+      self.formDetail={
+        addressLine1:'',
+        addressLine2:'',
+        selectCountry:'',
+        selectState:'',
+        selectCity:'',
+        pinCode:'',
+        lattitude:'',
+        lattitudeDir:'',
+        longitude:'',
+        longitudeDir:'',
+        radioAddress:''
+      };
       self.radioAddress=ko.observable();
       
       self.dataProviderForLatDir=ko.observableArray([]);
@@ -22,6 +36,7 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', '
       self.dataProviderForCountry=ko.observableArray([]);
       self.dataProviderForState=ko.observableArray([]);
       self.dataProviderForCity=ko.observableArray();
+
       // Wait until header show up to resolve
       var resolve = Context.getPageContext().getBusyContext().addBusyState({description: "wait for header"});
       // Header Config
@@ -66,20 +81,21 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', '
         accUtils.announce('Address page loaded.', 'assertive');
         document.title = "Address";
 
-        var tempData=localStorage.getItem('formDetail');
-        let data=JSON.parse(tempData);
-        data.addressLine1='';
-        data.addressLine2='';
-        data.selectCountry='';
-        data.selectState='';
-        data.selectCity='';
-        data.pinCode=ko.observable(000000);
-        data.radioAddress='';
-        data.lattitude='';
-        data.lattitudeDir='N';
-        data.longitude='';
-        data.longitudeDir='W';
-        self.formDetail=data;
+        var tempData=localStorage.getItem("formDetail");
+        var localStorageData=JSON.parse(tempData);
+        console.log(JSON.stringify(localStorageData));
+        self.formDetail.addressLine1=localStorageData.addressLine1;
+        self.formDetail.addressLine2=localStorageData.addressLine2;
+        self.formDetail.selectCountry=localStorageData.selectCountry;
+        self.formDetail.selectState=localStorageData.selectState;
+        self.formDetail.selectCity=localStorageData.selectCity;
+        self.formDetail.pinCode=localStorageData.pinCode;
+        self.formDetail.radioAddress=localStorageData.radioAddress;
+        self.formDetail.lattitude=localStorageData.lattitude;
+        self.formDetail.lattitudeDir=localStorageData.lattitudeDir;
+        self.formDetail.longitude=localStorageData.longitude;
+        self.formDetail.longitudeDir=localStorageData.longitudeDir;
+        //self.formDetail=data;
 
         service.getCountryList().then((result)=>{
             self.arrayDataProvider=new ArrayDataProvider(result,{keyAttributes:'id'});
@@ -113,13 +129,13 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', '
         // Implement if needed
       };
 
-      self.formSubmit=()=>
+      self.formSubmit=function()
       {
         var tracker=document.getElementById('validationGroup');
         if(tracker.valid === "valid")
         {
-          //console.log('if');
-          localStorage.setItem("formDetail",JSON.stringify(self.formDetail));
+          var formData=$.extend({},JSON.parse(localStorage.getItem("formDetail")),self.formDetail)
+          localStorage.setItem("formDetail",JSON.stringify(formData));
           app.router.go({path:"contact"});
         }
         else
@@ -148,6 +164,20 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', '
       }
 
       self.goBack=function(){app.goBack();}
+ 
+      self.getCurrentLocation=function()
+      {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          document.getElementById("gpsLong").value=position.coords.latitude;
+          document.getElementById("gpsLat").value=position.coords.longitude;
+          //alert('Latitude: '+ position.coords.latitude+ '\n' +'Longitude: '+ position.coords.longitude);
+        }, function(error) {
+          alert('code: '    + error.code    + '\n' +'message: ' + error.message + '\n');
+        },{
+          enableHighAccuracy: true
+               ,timeout : 5000
+        });
+      }
 
     }
 

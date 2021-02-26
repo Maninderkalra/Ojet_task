@@ -47,6 +47,16 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', '
         accUtils.announce('Dashboard page loaded.', 'assertive');
         document.title = "Dashboard";
         // Implement further logic if needed
+        var lData=localStorage.getItem("formDetail");
+        if(lData)
+        {
+          lData=JSON.parse(lData);
+          console.log(JSON.stringify(lData));
+          self.formDetail.name=lData.name;
+          self.formDetail.selectChanel=lData.selectChanel;
+          self.formDetail.selectBasicInfoType=lData.selectBasicInfoType;
+          self.formDetail.radioClass=lData.radioClass;
+        }
       };
 
       /**

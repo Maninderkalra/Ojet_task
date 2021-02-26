@@ -126,6 +126,20 @@ define(['knockout', 'ojs/ojcontext', 'ojs/ojmodule-element-utils', 'ojs/ojcorero
         // See the override.css file to see when the content area is hidden.
         contentElem.classList.add('oj-complete');
       }
+
+      self.deviceCheck=function()
+      {
+          var app = document.URL.indexOf( 'http://' ) === -1 && document.URL.indexOf( 'https://' ) === -1;
+          if (app) {
+              // Mobile
+              console.log("app" + app);
+          } else {
+              // Web page
+              console.log("web: " + app);
+          }
+          return app;
+      }
+
     }
 
     // release the application bootstrap busy state

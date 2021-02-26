@@ -5,6 +5,7 @@
   "dependencies": {
     "@oracle/oraclejet": "~10.0.0",
     "cordova-plugin-network-information": "^2.0.2",
+    "react-native-contacts": "^6.0.4",
     "requirejs-text": "^2.0.15"
   },
   "devDependencies": {

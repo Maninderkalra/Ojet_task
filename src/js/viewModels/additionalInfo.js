@@ -72,7 +72,8 @@ define(['knockout', 'appController', 'ojs/ojmodule-element-utils', 'accUtils', '
 
       self.formSubmit=()=>
       {
-        localStorage.setItem("formDetail",JSON.stringify(self.formDetail));
+        formDetailData=$.extend({},JSON.parse(localStorage.getItem("formDetail")), self.formDetail);
+        localStorage.setItem("formDetail",JSON.stringify(formDetailData));
         app.router.go({path:"home"});
       }
 
