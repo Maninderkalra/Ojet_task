@@ -1,0 +1,30 @@
+<div class="oj-hybrid-applayout-page">
+
+    <div class="oj-applayout-fixed-top">
+        <!--
+         ** Oracle JET V10.0.0 hybrid mobile application header pattern.
+         ** Please see the Oracle JET Cookbook App Shell: Hybrid Mobile demos for
+         ** more information on how to use this pattern.
+      -->
+      <!-- <header role="banner" class="oj-hybrid-applayout-header"> -->
+        <div class="oj-flex header">
+          <div class="oj-md-12 oj-sm-12 oj-lg-12">
+            <oj-module id="headerHome" config="[[headerConfig]]"></oj-module>
+          </div>
+          <!-- <div class="oj-md-2 oj-sm-2 oj-lg-2">
+           
+          </div> -->
+        </div>  
+      <!-- </header> -->
+    </div>
+    <!-- This is where your main page content will be loaded -->
+    <div class="oj-applayout-content">
+      <div role="main" class="oj-hybrid-applayout-content">
+        <div class="oj-hybrid-padding">
+            <h2>My Test</h2>
+            <oj-bind-if test="data">
+                <span>Party Number: </span><oj-bind-text value={{data}}></oj-bind-text>
+            </oj-bind-if>
+        </div>
+    </div>
+</div>
